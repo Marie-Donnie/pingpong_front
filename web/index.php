@@ -39,15 +39,22 @@
         button.bind('click', function () {
           $.post("getIp.php", "",function (data) {
             console.log(data)
-            $.post("https://aqueous-dusk-24314.herokuapp.com/sendIp", {ip: data}, function(data2, status)
+            $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(data2, status)
             {
                 //callback
             });
           } )
         })
       });
+
+      var ipdiv = jQuery('#ip_data');
+      var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
+        console.log(data)
+        ipdiv.append(data)
+      });
     </script>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
     <button id="postIP">Partage mon ip</button>
+    <div id="ip_data"/>
   </body>
 </html>
