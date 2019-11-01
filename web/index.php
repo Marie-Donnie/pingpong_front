@@ -48,7 +48,7 @@
 
           $.post("getIp.php", "",function (data) {
             console.log(data)
-            $.post("http://localhost:3000/sendIp", {ip: data}, function(data2, status)
+            $.post("https://aqueous-dusk-24314.herokuapp.com/sendIp", {ip: data}, function(data2, status)
             {
               console.log(status)
               button.text('Wish you like JQuery :)').css({color:'yellow', background:'blue'});
@@ -59,7 +59,7 @@
     </script>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
     <button id="postIP">Partage mon ip</button>
-    <form  method="post" action="http://localhost:3000/sendIp">
+    <form  method="post" action="https://aqueous-dusk-24314.herokuapp.com/sendIp">
       <input type="text" name="ip" value="<?php if(null !== $param){ echo $param;}?>" >
       <input type="text" name="ip2" value="<?php if(null !== $param2){ echo $param2;}?>" >
       <input type="text" name="ip3" value="<?php if(null !== $param3){ echo $param3;}?>" >
