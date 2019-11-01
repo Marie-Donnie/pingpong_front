@@ -29,29 +29,19 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <?php
-      $param = $_SERVER['REMOTE_ADDR'];
-      $param2 = $_SERVER['HTTP_CLIENT_IP'];
-      $param3 = $_SERVER['HTTP_X_FORWARDED_FOR'];
-
-    ?>
     <script type="text/javascript">
-
       jQuery(document).ready(function(){
-
 
         // Get the button object by it's id.
         var button = jQuery('#postIP')
 
         // When click this button then execute below function.
         button.bind('click', function () {
-
           $.post("getIp.php", "",function (data) {
             console.log(data)
             $.post("https://aqueous-dusk-24314.herokuapp.com/sendIp", {ip: data}, function(data2, status)
             {
-              console.log(status)
-              button.text('Wish you like JQuery :)').css({color:'yellow', background:'blue'});
+                //callback
             });
           } )
         })
@@ -59,11 +49,5 @@
     </script>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
     <button id="postIP">Partage mon ip</button>
-    <form  method="post" action="https://aqueous-dusk-24314.herokuapp.com/sendIp">
-      <input type="text" name="ip" value="<?php if(null !== $param){ echo $param;}?>" >
-      <input type="text" name="ip2" value="<?php if(null !== $param2){ echo $param2;}?>" >
-      <input type="text" name="ip3" value="<?php if(null !== $param3){ echo $param3;}?>" >
-      <input type="submit" value="Partage mon IP">
-    </form>
   </body>
 </html>
