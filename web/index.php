@@ -45,12 +45,12 @@
             });
           } )
         })
-      });
 
-      var ipdiv = jQuery('#ip_data');
-      var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
-        console.log(data)
-        ipdiv.append(data)
+        var ipdiv = jQuery('#ip_data');
+              var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
+                console.log(data)
+                ipdiv.append(data)
+              });
       });
     </script>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
