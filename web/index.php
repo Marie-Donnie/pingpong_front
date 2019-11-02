@@ -42,6 +42,7 @@
             console.log(data)
             $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
             {
+            console.log(resp, status)
              if (status === 200) {
                 ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
              } else if (status === 406) {
