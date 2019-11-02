@@ -48,9 +48,14 @@
 
         var ipdiv = jQuery('#ip_data');
           var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
-            console.log(data, ipdiv, jQuery('#ip_data'))
-            ipdiv.append("test");
-            ipdiv.append(data)
+            data.forEach((addr) => {
+                ipdiv.append(
+                <div>
+                    <span>{addr.address}</span>
+                    <span>{addr.latitude}</span>
+                    <span>{addr.longitude}</span>
+                </div>
+                });
           });
       });
     </script>
