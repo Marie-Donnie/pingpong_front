@@ -42,8 +42,11 @@
             console.log(data)
             $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
             {
-             ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
-
+             if (status === 200) {
+                ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
+             } else if (status === 406) {
+                console.log("IP not located in france :( ")
+             }
             });
           } )
         })
@@ -58,6 +61,7 @@
     </script>
     <style type="text/css">
         #ip_data td { padding:10px; }
+        #ip_data { margin-top: 20px; }
     </style>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
     <button id="postIP">Partage mon ip</button>
