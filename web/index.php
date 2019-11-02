@@ -63,7 +63,7 @@
             <tr>
                 <th>Addresse IP</th>
                 <th>Latitude</th>
-                <th Longitude</th>
+                <th> Longitude</th>
             </tr>
         </table>
     </div>
