@@ -42,7 +42,7 @@
             console.log(data)
             $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
             {
-             ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
+             ipdiv.append("<tr><td>\t" + resp.address + "\t</td><td>\t" + resp.latitude + "\t</td><td>\t" + resp.longitude + "\t</td></tr>");
 
             });
           } )
@@ -51,7 +51,7 @@
 
           var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
             data.forEach((addr) => {
-                ipdiv.append("<tr><td>" + addr.address + "</td><td>" + addr.latitude + "</td><td>" + addr.longitude + "</td></tr>");
+                ipdiv.append("<tr><td>\t" + addr.address + "\t</td><td>\t" + addr.latitude + "\t</td><td>\t" + addr.longitude + "\t</td></tr>");
                 });
           });
       });
@@ -61,9 +61,9 @@
     <div>
         <table id="ip_data">
             <tr>
-                <th>Addresse IP</th>
-                <th>Latitude</th>
-                <th> Longitude</th>
+                <th>    Addresse IP </th>
+                <th>    Latitude    </th>
+                <th>    Longitude   </th>
             </tr>
         </table>
     </div>
