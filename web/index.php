@@ -34,28 +34,38 @@
 
         // Get the button object by it's id.
         var button = jQuery('#postIP')
+        var ipdiv = jQuery('#ip_data');
 
         // When click this button then execute below function.
         button.bind('click', function () {
           $.post("getIp.php", "",function (data) {
             console.log(data)
-            $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(data2, status)
+            $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
             {
-                //callback
+             ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
+
             });
           } )
         })
 
-        var ipdiv = jQuery('#ip_data');
+
           var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
             data.forEach((addr) => {
-                ipdiv.append("<div><span>" + addr.address + "</span><span>" + addr.latitude + "</span><span>" + addr.longitude + "</span></div>");
+                ipdiv.append("<tr><td>" + addr.address + "</td><td>" + addr.latitude + "</td><td>" + addr.longitude + "</td></tr>");
                 });
           });
       });
     </script>
     <h2>Cliquez le bouton pour partager votre addresse IP avec nous</h2>
     <button id="postIP">Partage mon ip</button>
-    <div id="ip_data"/>
+    <div>
+        <table id="ip_data">
+            <tr>
+                <th>Addresse IP</th>
+                <th>Latitude</th>
+                <th Longitude</th>
+            </tr>
+        </table>
+    </div>
   </body>
 </html>
