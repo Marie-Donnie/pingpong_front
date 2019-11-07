@@ -27,9 +27,9 @@
 
         // When click this button then execute below function.
         button.bind('click', function () {
-          $.post("getIp.php", "",function (data) {
+          jQuery.post("getIp.php", "",function (data) {
             console.log(data)
-            $.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
+            jQuery.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: data}, function(resp, status)
             {
             console.log(resp, status)
              if (resp && (status === "success")) {
@@ -37,14 +37,7 @@
              }
             });
           } )
-        })
-
-
-          var ip_data = $.get("https://aqueous-dusk-24314.herokuapp.com/ip/all", function(data, status) {
-            data.forEach((addr) => {
-                ipdiv.append("<tr><td>" + addr.address + "</td><td>" + addr.latitude + "</td><td>" + addr.longitude + "</td></tr>");
-                });
-          });
+        });
       });
     </script>
     <div class="jumbotron">
@@ -52,15 +45,6 @@
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <hr class="my-4">
       <button class="btn btn-primary btn-lg" id="postIP">Partage mon ip</button>
-    </div>
-    <div>
-        <table id="ip_data">
-            <tr>
-                <th>Addresse IP</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-            </tr>
-        </table>
     </div>
   </body>
 </html>
