@@ -47,8 +47,7 @@
       <button class="btn btn-primary btn-lg" id="postIP">Partage mon ip</button>
       <p class="lead">Cliquez le bouton pour télécharger le client python afin de lancer des requêtes traceroutes. Lors du complétion du téléchargement, veuillez lancer le programme. Lorsque son execution est terminée, vous pouvez supprimer le fichier. Merci pour votre participation ! </p>
       <a href="p/" download="pingpong.py" class="btn btn-dark btn-lg">Télécharger client </a>
-        <button class="btn btn-dark btn-lg" id="downloadClient" type="submit">Télécharger client</button>
-      </form>
+       <button class="btn btn-dark btn-lg" id="downloadClient" type="submit">Téléchargerf client</button>
     </div>
   </body>
 </html>
