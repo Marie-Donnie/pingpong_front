@@ -36,14 +36,7 @@
           })
         });
 
-        var downloadButton = jQuery('#downloadClient')
-
-        downloadButton.bind('click', function (e) {
-
-             e.preventDefault();  //stop the browser from following
-             window.location.href = '/pingpong.py';
-         });
-
+      
 
       });
     </script>
@@ -53,8 +46,9 @@
       <hr class="my-4">
       <button class="btn btn-primary btn-lg" id="postIP">Partage mon ip</button>
       <p class="lead">Cliquez le bouton pour télécharger le client python afin de lancer des requêtes traceroutes. Lors du complétion du téléchargement, veuillez lancer le programme. Lorsque son execution est terminée, vous pouvez supprimer le fichier. Merci pour votre participation ! </p>
-      <hr class="my-4">
-       <button class="btn btn-dark btn-lg" id="downloadClient">Télécharger client</button>
+      <form method="get" action="pingpong.py">
+        <button class="btn btn-dark btn-lg" id="downloadClient" type="submit">Télécharger client</button>
+      </form>
     </div>
   </body>
 </html>
