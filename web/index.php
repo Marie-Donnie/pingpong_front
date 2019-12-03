@@ -20,11 +20,9 @@
     <script type="text/javascript">
       jQuery(document).ready(function(){
 
-        // Get the button object by it's id.
-        var button = jQuery('#postIP')
+        var button = jQuery('#postIP');
         var ipdiv = jQuery('#ip_data');
 
-        // When click this button then execute below function.
         button.bind('click', function () {
           jQuery.post("getIp.php", "",function (data) {
             console.log(data)
@@ -35,15 +33,24 @@
                 ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
              }
             });
-          } )
+          })
         });
+
+        var downloadButton = jQuery('#downloadClient')
+
+        downloadButton.attr({target: '_blank',
+                            href  : 'https://pure-fortress-53953.herokuapp.com/pingpong.py'});
+
       });
     </script>
     <div class="jumbotron">
-      <h1 class="display-4">Partagez votre IP</h1>
+      <h1 class="display-4">Projet Pingpong</h1>
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <hr class="my-4">
       <button class="btn btn-primary btn-lg" id="postIP">Partage mon ip</button>
+      <p class="lead">Cliquez le bouton pour télécharger le client python afin de lancer des requêtes traceroutes. Lors du complétion du téléchargement, veuillez lancer le programme. Lorsque son execution est terminée, vous pouvez supprimer le fichier. Merci pour votre participation ! </p>
+      <hr class="my-4">
+       <button class="btn btn-dark btn-lg" id="downloadClient">Télécharger client</button>
     </div>
   </body>
 </html>
