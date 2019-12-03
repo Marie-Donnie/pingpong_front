@@ -38,8 +38,12 @@
 
         var downloadButton = jQuery('#downloadClient')
 
-        downloadButton.attr({target: '_blank',
-                            href  : 'https://pure-fortress-53953.herokuapp.com/pingpong.py'});
+        downloadButton.bind('click', function (e) {
+
+             e.preventDefault();  //stop the browser from following
+             window.location.href = '/pingpong.py';
+         });
+
 
       });
     </script>
