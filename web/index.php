@@ -48,6 +48,13 @@
       <p class="lead">Cliquez le bouton pour télécharger le client python afin de lancer des requêtes traceroutes. Lors du complétion du téléchargement, veuillez unzipper le programme, et executer le ficher éxécutable dans le dossier. Lorsque son éxécution est terminée, vous pouvez supprimer le téléchargement. Merci pour votre participation ! </p>
       <a href="p/" download="Interface" class="btn btn-dark btn-lg">Télécharger client </a>
     </div>
+    <style>
+        .map {
+          width: 100%;
+          height:1000px;
+        }
+      </style>
+      <div id="map" class="map"></div>
     <script type="text/javascript" src="./bundle.js"/>
   </body>
 </html>
