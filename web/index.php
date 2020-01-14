@@ -22,7 +22,7 @@
 
         var button = jQuery('#postIP');
         var ipdiv = jQuery('#ip_data');
-        var downloadButton = jQuery('#shell_button');
+        var shellButton = jQuery('#shell_button');
 
         button.bind('click', function () {
           jQuery.post("getIp.php", "",function (data) {
