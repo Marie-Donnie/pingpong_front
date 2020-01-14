@@ -39,11 +39,9 @@
         });
         consentBox.bind('click', function() {
             if (consentBox.checked) {
-                shellButton.classList.remove("disabled");
-                console.log("enable");
+                shellButton.removeClass("disabled");
             } else {
-                shellButton.classList.add("disabled");
-                console.log("disable");
+                shellButton.addClass("disabled");
             }
         });
       });
@@ -54,9 +52,9 @@
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
       <br/>
-      <input type="checkbox" class="form-check-input" id="consent">
+      <div><input type="checkbox" class="form-check-input" id="consent"></div>
       <label class="form-check-label" for="exampleCheck1">Je consente de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
-      <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant</p>
+      <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant:</p>
       <p class="lead">bash pingpong.sh</p>
       <p class="lead">et laissez le processus terminer. Ça peut prendre quelques minutes.</p>
       <a href="pingpong.sh" id="shell_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier shell</a>
