@@ -37,10 +37,13 @@
           })
         });
 
-        $("#consent").click( function(){
-           if( $(this).is(':checked') shellButton.classList.remove("disabled");
-           if( !$(this).is(':checked') shellButton.classList.add("disabled");
-        });
+        function handleClick(cb) {
+         if (cb.checked) {
+            shellButton.classList.remove("disabled");
+         } else {
+            shellButton.classList.add("disabled");
+         }
+        }
       });
     </script>
     <div class="jumbotron">
@@ -48,7 +51,8 @@
       <hr class="my-4">
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
-      <input type="checkbox" class="form-check-input" id="consent">
+      <br/>
+      <input type="checkbox" class="form-check-input" id="consent" onclick='handleClick(this);'>
       <label class="form-check-label" for="exampleCheck1">Je consente de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
       <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant</p>
       <p>bash pingpong.sh</p>
