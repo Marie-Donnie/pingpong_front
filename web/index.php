@@ -22,6 +22,7 @@
 
         var button = jQuery('#postIP');
         var ipdiv = jQuery('#ip_data');
+        var downloadButton = jQuery('#shell_button');
 
         button.bind('click', function () {
           jQuery.post("getIp.php", "",function (data) {
@@ -36,8 +37,10 @@
           })
         });
 
-
-
+        $("#consent").click( function(){
+           if( $(this).is(':checked') shellButton.classList.remove("disabled");
+           if( !$(this).is(':checked') shellButton.classList.add("disabled");
+        });
       });
     </script>
     <div class="jumbotron">
@@ -45,12 +48,12 @@
       <hr class="my-4">
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <input type="checkbox" class="form-check-input" id="consent">
       <label class="form-check-label" for="exampleCheck1">Je consente de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
       <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant</p>
       <p>bash pingpong.sh</p>
-      <p>et laissez le processus terminer. Ça peut prendre quelques minutes./p>
-      <a href="pingpong.sh" download class="btn btn-dark btn-lg" enabled=false>Télécharger fichier shell</a>
+      <p>et laissez le processus terminer. Ça peut prendre quelques minutes.</p>
+      <a href="pingpong.sh" id="shell_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier shell</a>
     </div>
     <style>
         .map {
