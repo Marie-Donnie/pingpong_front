@@ -52,7 +52,7 @@
       <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
       <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
       <br/>
-      <div>
+      <div class="consent-div">
         <input type="checkbox" class="form-check-input" id="consent">
         <label class="form-check-label" for="exampleCheck1">Je consente de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
       </div>

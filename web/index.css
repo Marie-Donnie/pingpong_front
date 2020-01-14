@@ -1,9 +1,7 @@
 
 #ip_data td { padding:10px; }
 #ip_data { margin-top: 20px; }
-#consent {
-    margin-left: 0px;
-}
-.form-check-label {
+
+.consent-div {
     margin-left: 20px;
 }
