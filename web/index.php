@@ -104,7 +104,8 @@
                 icons: [{
                   icon: lineSymbol,
                   offset: '100%',
-                  scale: 3
+                  scale: 3,
+                  strokeWeight: 3
                 }],
               });
               pingPath.setMap(map)
