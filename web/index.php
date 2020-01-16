@@ -103,7 +103,8 @@
                 strokeWeight: 100 * pingDat.frequency,
                 icons: [{
                   icon: lineSymbol,
-                  offset: '100%'
+                  offset: '100%',
+                  scale: 3
                 }],
               });
               pingPath.setMap(map)
