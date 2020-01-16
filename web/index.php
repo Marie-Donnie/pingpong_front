@@ -38,9 +38,8 @@
           })
         });
         consentBox.bind('click', function() {
-            console.log(consentBox.checked)
-            console.log(shellButton)
-            if (consentBox.checked) {
+            console.log(consentBox.is(':checked'))
+            if (consentBox.is(':checked')) {
                 shellButton.removeClass("disabled");
             } else {
                 shellButton.addClass("disabled");
