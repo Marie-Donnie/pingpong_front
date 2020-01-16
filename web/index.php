@@ -88,8 +88,7 @@
         });
 
         $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
-          let dataJson = JSON.parse(data)
-          dataJson.map((pingDat) => {
+          data.map((pingDat) => {
               let ping = [{lat: parseFloat(pingDat.src.latitude),
                 lng: parseFloat(pingDat.src.longitude)},
                 {lat: parseFloat(pingDat.target.latitude), lng: parseFloat(pingDat.target.longitude)}];
