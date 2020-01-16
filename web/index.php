@@ -75,31 +75,24 @@
         var map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 6, center: france});
         // var marker = new google.maps.Marker({position: f, map: map});
-        $.get('https://aqueous-dusk-24314.herokuapp.com/ip/all', function(data, status){
-          data.map((ip) => {
-            let ping = {lat: parseFloat(ip.latitude), lng: parseFloat(ip.longitude)};
-            let title = "ISP: " + ip.isp;
-            let marker = new google.maps.Marker({position: ping, map: map,title: title, label: "U"})
+        $.get('https://aqueous-dusk-24314.herokuapp.com/ip/all/condensed', function(data, status){
+          data.map((dataPoint) => {
+            let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
+            if (dataPoint.type === "USER") {
+               let marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, label: "U"})
+            } else {
+                let marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, icon: {
+                                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}})
+            }
           });
         });
 
-        $.get('https://aqueous-dusk-24314.herokuapp.com/ip/intermediate/all', function(data, status){
-          data.map((ip) => {
-            let ping = {lat: parseFloat(ip.latitude), lng: parseFloat(ip.longitude)};
-            let title = "ISP: " + ip.isp;
-            let marker = new google.maps.Marker({position: ping, map: map,title: title, icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}})
-          });
-        });
-
-        $.get('https://aqueous-dusk-24314.herokuapp.com/traceroute/all', function(data, status){
+        $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
           let dataJson = JSON.parse(data)
           dataJson.map((pingDat) => {
-              let src = pingDat.src.properties;
-              let target = pingDat.target.properties;
-              let ping = [{lat: parseFloat(src.latitude),
-                lng: parseFloat(src.longitude)},
-                {lat: parseFloat(target.latitude), lng: parseFloat(target.longitude)}];
+              let ping = [{lat: parseFloat(pingDat.src.latitude),
+                lng: parseFloat(pingDat.src.longitude)},
+                {lat: parseFloat(pingDat.target.latitude), lng: parseFloat(pingDat.target.longitude)}];
               let lineSymbol = {
                 path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
               };
@@ -108,7 +101,7 @@
                 geodesic: true,
                 strokeColor: '#FF0000',
                 strokeOpacity: 1.0,
-                strokeWeight: 2,
+                strokeWeight: 20 * parseFloat(pingDat.frequency),
                 icons: [{
                   icon: lineSymbol,
                   offset: '100%'
