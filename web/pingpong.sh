@@ -13,7 +13,7 @@ for i in "${ADDR[@]}"; do # access each element of array
    echo "Tracerouting to"
    echo $i
 
-   traceroute $i >> save.txt
+   traceroute -m 20 -w 1 -q 1 $i >> save.txt
 
 
 done
