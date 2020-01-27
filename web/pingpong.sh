@@ -1,6 +1,5 @@
 rm -f pingpong.txt
-#if command -v curl >/dev/null 2>&1 ; then
-if 0; then
+if command -v curl >/dev/null 2>&1 ; then
     #echo "curl found"
     echo " tracerouting from my IP adrress : "
     echo "__SRC__" >> pingpong.txt
