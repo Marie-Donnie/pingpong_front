@@ -54,7 +54,7 @@
       <br/>
       <div class="consent-div">
         <input type="checkbox" class="form-check-input" id="consent">
-        <label class="form-check-label" for="exampleCheck1">Je consente de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
+        <label class="form-check-label" for="exampleCheck1">Je consens de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
       </div>
       <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant:</p>
       <p class="lead">bash pingpong.sh</p>
