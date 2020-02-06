@@ -63,7 +63,7 @@ else
     echo "Une installation de curl ou wget est nécessarie pour l'execution de ce program. Voulez vous installer curl?"
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) sudo apt install curl; pingpong_curl; break;;   #sudo apt marche seulement sur Linux mais curl vient avec OSX donc sur OSX on n'arrivera jamais ici.
+            Yes ) sudo apt-get update; sudo apt-get install curl; pingpong_curl; break;;   #sudo apt marche seulement sur Linux mais curl vient avec OSX donc sur OSX on n'arrivera jamais ici.
             No ) echo "Merci pour votre participation."; exit;;
         esac
     done
