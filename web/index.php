@@ -23,6 +23,7 @@
         var button = jQuery('#postIP');
         var ipdiv = jQuery('#ip_data');
         var shellButton = jQuery('#shell_button');
+        var batButton = jQuery('#bat_button');
         var consentBox = jQuery('#consent');
 
         button.bind('click', function () {
@@ -40,8 +41,10 @@
         consentBox.bind('click', function() {
             if (consentBox.is(':checked')) {
                 shellButton.removeClass("disabled");
+                batButton.removeClass("disabled");
             } else {
                 shellButton.addClass("disabled");
+                batButton.addClass("disabled");
             }
         });
       });
@@ -54,12 +57,20 @@
       <br/>
       <div class="consent-div">
         <input type="checkbox" class="form-check-input" id="consent">
-        <label class="form-check-label" for="exampleCheck1">Je consens de télécharger ce fichier shell et l'éxecuter dans le terminal.</label>
+        <label class="form-check-label" for="exampleCheck1">Je consens de télécharger ce fichier shell/batch et l'éxecuter.</label>
       </div>
-      <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant:</p>
-      <p class="lead">bash pingpong.sh</p>
-      <p class="lead">et laissez le processus terminer. Ça peut prendre quelques minutes.</p>
-      <a href="pingpong.sh" id="shell_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier shell</a>
+      <div>
+          <h3 class="display-5">Mac/Linux</h3>
+          <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant:</p>
+          <p class="lead">bash pingpong.sh</p>
+          <p class="lead">et laissez le processus terminer. Ça peut prendre quelques minutes.</p>
+          <a href="pingpong.sh" id="shell_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier shell</a>
+      </div>
+        <div>
+                <h3 class="display-5">Windows</h3>
+                <p class="lead">Double-clickez le fichier téléchargé, et confirmez si demandé de l'éxecuter en tant qu'administrateur. Laissez le processus terminer. Ça peut prendre quelques minutes.</p>
+                <a href="pingpong.bat" id="bat_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier batch</a>
+            </div>
     </div>
     <style>
         .map {
