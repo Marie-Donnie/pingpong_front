@@ -62,7 +62,7 @@
       <div class="download-div">
           <h3 class="display-5">Mac/Linux</h3>
           <p class="lead">Dans le terminal, veuillez naviguer dans le dossier où le fichier pingpong.sh est localisé. Executez le command suivant:</p>
-          <p class="lead">bash pingpong.sh</p>
+          <p class="lead" id="bash-command">bash pingpong.sh</p>
           <p class="lead">et laissez le processus terminer. Ça peut prendre quelques minutes.</p>
           <a href="pingpong.sh" id="shell_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier shell</a>
       </div>

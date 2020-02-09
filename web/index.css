@@ -8,3 +8,7 @@
 .download-div {
     margin-top: 20px;
 }
+
+#bash-command {
+    font-family: "Courier New", Courier, serif;
+}
