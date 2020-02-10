@@ -7,7 +7,7 @@ echo _END_SRC_>> pingpong.txt
 
 for %%I in  (%liste%)  do (
 	echo _BEGIN_>> pingpong.txt
-	echo %%I >>pingpong.txt
+	echo %%I>>pingpong.txt
 	echo _TRACEROUTE_>>pingpong.txt
 	tracert -d -h 16 -w 500 %%I >>pingpong.txt 
     echo _END_>>pingpong.txt
