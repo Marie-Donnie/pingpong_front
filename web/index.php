@@ -52,9 +52,24 @@
     <div class="jumbotron">
       <h1 class="display-4">Projet Pingpong</h1>
       <hr class="my-4">
-      <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
-      <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
-      <br/>
+      <div>
+        <div>
+          <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
+          <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
+          <br/>
+         </div>
+         <div>
+           <form action="https://aqueous-dusk-24314.herokuapp.com/ip/add" method="POST">
+             <div class="form-group">
+               <label for="ip_input">Ou, saisez une addresse IP</label>
+               <input name="ip" class="form-control" id="ip_input" value="">
+             </div>
+             <div>
+               <button>Envoyer IP</button>
+             </div>
+           </form>
+          </div>
+      </div>
       <div class="consent-div">
         <input type="checkbox" class="form-check-input" id="consent">
         <label class="form-check-label" for="exampleCheck1">Je consens de télécharger ce fichier shell/batch et l'éxecuter.</label>
