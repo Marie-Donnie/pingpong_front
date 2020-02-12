@@ -21,6 +21,7 @@
       jQuery(document).ready(function(){
 
         var button = jQuery('#postIP');
+        var buttonForm = jQuery('#postIPForm');
         var ipdiv = jQuery('#ip_data');
         var shellButton = jQuery('#shell_button');
         var batButton = jQuery('#bat_button');
@@ -38,6 +39,17 @@
             });
           })
         });
+
+        buttonForm.bind('click', function () {
+            let ip = $("#ip_input"). val();
+            jQuery.post("https://aqueous-dusk-24314.herokuapp.com/ip/add", {ip: ip}, function(resp, status) {
+                 console.log(resp, status)
+                 if (resp && (status === "success")) {
+                    ipdiv.append("<tr><td>" + resp.address + "</td><td>" + resp.latitude + "</td><td>" + resp.longitude + "</td></tr>");
+                 }
+            });
+          })
+
         consentBox.bind('click', function() {
             if (consentBox.is(':checked')) {
                 shellButton.removeClass("disabled");
@@ -58,17 +70,11 @@
           <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
           <br/>
          </div>
-         <div>
-           <form action="https://aqueous-dusk-24314.herokuapp.com/ip/add" method="POST">
-             <div class="form-group">
-               <label for="ip_input">Ou, saisez une addresse IP</label>
-               <input name="ip" class="form-control" id="ip_input" value="">
-             </div>
-             <div>
-               <button>Envoyer IP</button>
-             </div>
-           </form>
-          </div>
+        <div class="form-group">
+           <label for="ip_input">Ou, saisez une addresse IP</label>
+           <input name="ip" class="form-control" id="ip_input" value="">
+           <button class="btn btn-primary btn-lg mb-3" id="postIPForm">Envoyer IP</button>
+        </div>
       </div>
       <div class="consent-div">
         <input type="checkbox" class="form-check-input" id="consent">
