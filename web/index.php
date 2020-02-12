@@ -64,7 +64,7 @@
     <div class="jumbotron">
       <h1 class="display-4">Projet Pingpong</h1>
       <hr class="my-4">
-      <div class="ip-collection">
+      <div>
         <div>
           <p class="lead">Cliquez le bouton pour partager votre addresse IP avec nous.</p>
           <button class="btn btn-primary btn-lg mb-3" id="postIP">Partager mon ip</button>
@@ -73,7 +73,7 @@
         <div class="form-group" id="enter-ip">
            <label for="ip_input">Ou, saisez une addresse IP</label>
            <input name="ip" class="form-control" id="ip_input" value="">
-           <button class="btn btn-primary btn-lg mb-3" id="postIPForm">Envoyer IP</button>
+           <button class="btn btn-primary btn-md mb-3" id="postIPForm">Envoyer IP</button>
         </div>
       </div>
       <div class="consent-div">
