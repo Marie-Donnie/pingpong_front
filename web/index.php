@@ -102,6 +102,10 @@
       <div id="map" class="map"></div>
     <script>
       // Initialize and add the map
+
+      let markers = {};
+      let tracerouteData;
+
       function initMap() {
         var france = {lat: 48.8556, lng: 2.3522};
         var map = new google.maps.Map(
@@ -120,14 +124,20 @@
 //        });
         let polylines = [];
         $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
-
-              data.map((src) => {
-                  let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
-                  let marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, label: "U"})
-
+              tracerouteData = data;
+              Object.keys(tracerouteData).map((srcAdd) => {
+                  let src = tracerouteData[srcAdd];
+                  let marker;
+                  if (!markers[src.address]) {
+                      let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
+                      marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, label: "U"})
+                      markers[src.address] = marker;
+                  }
+                  marker = markers[src.address];
                   marker.addListener('click', function() {
                       polylines.map((pl) => {pl.setMap(null)});
-                      src.destinations.map((dest) => {
+                      Object.keys(src.dsts).map((destAdd) => {
+                          let dest = src.dsts[destAdd]
                           dest.traceroute.map((hop) => {
                               let ping = [{lat: parseFloat(hop.src.latitude),
                                   lng: parseFloat(hop.src.longitude)},
