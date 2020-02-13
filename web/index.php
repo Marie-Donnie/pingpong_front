@@ -137,6 +137,7 @@
                             let marker = markers[srcAdd];
                             console.log("marker", marker);
                             marker.addListener('click', function() {
+                                console.log("CLICK");
                                 polylines.map((pl) => {pl.setMap(null)});
                                 Object.keys(src.dsts).map((destAdd) => {
                                     let dest = src.dsts[destAdd]
