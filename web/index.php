@@ -159,7 +159,7 @@
                                             geodesic: true,
                                             strokeColor: '#FF0000',
                                             strokeOpacity: 1.0,
-                                            strokeWeight: 100 * pingDat.frequency,
+                                            strokeWeight: 3,
                                             icons: [{
                                                 icon: lineSymbol,
                                                 offset: '100%',
