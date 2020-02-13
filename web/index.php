@@ -117,7 +117,13 @@
             let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
             let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "U"})
             markers[dataPoint.address] = marker;
+            marker.addListener('click', function() { console.log("click1");});
           });
+
+          Object.keys(markers).map((m) => {
+            let mk = markers[m];
+            m.addListener('mouseover', function() { console.log("click2"); });
+           });
 
           $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
                        console.log("data: ", data)
