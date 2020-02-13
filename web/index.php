@@ -130,7 +130,7 @@
                   let marker;
                   if (!markers[src.address]) {
                       let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
-                      marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, label: "U"})
+                      marker = new google.maps.Marker({position: ping, map: map,title: "", label: "U"})
                       markers[src.address] = marker;
                   }
                   marker = markers[src.address];
