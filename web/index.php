@@ -132,6 +132,7 @@
                       let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
                       marker = new google.maps.Marker({position: ping, map: map,title: "", label: "U"})
                       markers[src.address] = marker;
+                      marker.setMap(map);
                   }
                   marker = markers[src.address];
                   marker.addListener('click', function() {
