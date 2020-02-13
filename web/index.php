@@ -173,7 +173,7 @@
                                 })
                             });
                             marker.setMap(null);
-                            markert.setMap(map);
+                            marker.setMap(map);
                         })
                   });
 
