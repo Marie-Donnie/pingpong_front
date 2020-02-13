@@ -117,15 +117,15 @@
             let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
             let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "U"})
             markers[dataPoint.address] = marker;
-            marker.addListener('click', function() { console.log("click1");});
           });
 
-          Object.keys(markers).map((m) => {
-            let mk = markers[m];
-            mk.addListener('mouseover', function() { console.log("click2"); });
-           });
+
 
           $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
+                      Object.keys(markers).map((m) => {
+                          let mk = markers[m];
+                          mk.addListener('mouseover', function() { console.log("click2"); });
+                         });
                        console.log("data: ", data)
                         tracerouteData = data;
                         Object.keys(tracerouteData).map((srcAdd) => {
@@ -143,7 +143,6 @@
                             let marker = markers[srcAdd];
                             console.log("marker", marker);
                             marker.addListener('click', function() {
-                                alert("click");
                                 console.log("CLICK");
                                 polylines.map((pl) => {pl.setMap(null)});
                                 Object.keys(src.dsts).map((destAdd) => {
