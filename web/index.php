@@ -122,7 +122,7 @@
 
           Object.keys(markers).map((m) => {
             let mk = markers[m];
-            m.addListener('mouseover', function() { console.log("click2"); });
+            mk.addListener('mouseover', function() { console.log("click2"); });
            });
 
           $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
