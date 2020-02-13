@@ -108,69 +108,66 @@
       function initMap() {
         let markers = {};
         let tracerouteData;
+        let polylines = [];
         var france = {lat: 48.8556, lng: 2.3522};
         var map = new google.maps.Map(
                 document.getElementById('map'), {zoom: 6, center: france});
-        // var marker = new google.maps.Marker({position: f, map: map});
-//        $.get('https://aqueous-dusk-24314.herokuapp.com/ip/all/condensed', function(data, status){
-//          data.map((dataPoint) => {
-//            let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
-//            if (dataPoint.type === "USER") {
-//               let marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, label: "U"})
-//            } else {
-//                let marker = new google.maps.Marker({position: ping, map: map,title: dataPoint.label, icon: {
-//                                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}})
-//            }
-//          });
-//        });
-        let polylines = [];
-        $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
-             console.log("data: ", data)
-              tracerouteData = data;
-              Object.keys(tracerouteData).map((srcAdd) => {
-                  console.log("srcadd", srcAdd)
-                  let src = tracerouteData[srcAdd];
-                  console.log("src", src)
-                  let marker;
-                  if (!markers[src.address]) {
-                      console.log("add marker")
-                      let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
-                      marker = new google.maps.Marker({position: ping, map: map,title: "", label: "U"})
-                      markers[src.address] = marker;
-                      marker.setMap(map);
-                  }
-                  marker = markers[src.address];
-                  console.log("marker", marker);
-                  marker.addListener('click', function() {
-                      polylines.map((pl) => {pl.setMap(null)});
-                      Object.keys(src.dsts).map((destAdd) => {
-                          let dest = src.dsts[destAdd]
-                          dest.traceroute.map((hop) => {
-                              let ping = [{lat: parseFloat(hop.src.latitude),
-                                  lng: parseFloat(hop.src.longitude)},
-                                  {lat: parseFloat(hop.target.latitude), lng: parseFloat(hop.target.longitude)}];
-                              let lineSymbol = {
-                                  path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
-                              };
-                              let pingPath = new google.maps.Polyline({
-                                  path: ping,
-                                  geodesic: true,
-                                  strokeColor: '#FF0000',
-                                  strokeOpacity: 1.0,
-                                  strokeWeight: 100 * pingDat.frequency,
-                                  icons: [{
-                                      icon: lineSymbol,
-                                      offset: '100%',
-                                      scale: 3,
-                                      strokeWeight: 3
-                                  }],
-                              });
-                              polylines.push(pingPath);
-                              pingPath.setMap(map)
-                          })
-                      })
+        $.get('https://aqueous-dusk-24314.herokuapp.com/ip/all/', function(data, status){
+          data.map((dataPoint) => {
+            let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
+            let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "U"})
+            markers[dataPoint.address] = marker;
+          });
+
+          $.get('https://aqueous-dusk-24314.herokuapp.com/traceroutes/all/condensed', function(data, status){
+                       console.log("data: ", data)
+                        tracerouteData = data;
+                        Object.keys(tracerouteData).map((srcAdd) => {
+                            console.log("srcadd", srcAdd)
+                            let src = tracerouteData[srcAdd];
+                            console.log("src", src)
+          //                  let marker;
+          //                  if (!markers[src.address]) {
+          //                      console.log("add marker")
+          //                      let ping = {lat: parseFloat(src.latitude), lng: parseFloat(src.longitude)};
+          //                      marker = new google.maps.Marker({position: ping, map: map,title: "", label: "U"})
+          //                      markers[src.address] = marker;
+          //                      marker.setMap(map);
+          //                  }
+                            let marker = markers[srcAdd];
+                            console.log("marker", marker);
+                            marker.addListener('click', function() {
+                                polylines.map((pl) => {pl.setMap(null)});
+                                Object.keys(src.dsts).map((destAdd) => {
+                                    let dest = src.dsts[destAdd]
+                                    dest.traceroute.map((hop) => {
+                                        let ping = [{lat: parseFloat(hop.src.latitude),
+                                            lng: parseFloat(hop.src.longitude)},
+                                            {lat: parseFloat(hop.target.latitude), lng: parseFloat(hop.target.longitude)}];
+                                        let lineSymbol = {
+                                            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
+                                        };
+                                        let pingPath = new google.maps.Polyline({
+                                            path: ping,
+                                            geodesic: true,
+                                            strokeColor: '#FF0000',
+                                            strokeOpacity: 1.0,
+                                            strokeWeight: 100 * pingDat.frequency,
+                                            icons: [{
+                                                icon: lineSymbol,
+                                                offset: '100%',
+                                                scale: 3,
+                                                strokeWeight: 3
+                                            }],
+                                        });
+                                        polylines.push(pingPath);
+                                        pingPath.setMap(map)
+                                    })
+                                })
+                            });
+                        })
                   });
-              })
+
         });
 
       }
