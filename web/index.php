@@ -128,13 +128,15 @@
                               destMarkers[dstDataPoint.address] = markerDest;
 
                               markerDest.addListener('click', function () {
-                                   let rainbow = ["#FF0000", "#FF7F00",
-                                   "#FFFF00", "#00FF00", "#0000FF", "#4B0082",
-                                   "#9400D3"]
-                                   let i = 0;
+
+
                                   //get traceroute
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
 
+                                     let rainbow = ["#FF0000", "#FF7F00",
+                                                                        "#FFFF00", "#00FF00", "#0000FF", "#4B0082",
+                                                                        "#9400D3"];
+                                      let i = 0;
                                       dataTr.map((hop) => {
                                           let ping = [{lat: parseFloat(hop.src.latitude),
                                               lng: parseFloat(hop.src.longitude)},
