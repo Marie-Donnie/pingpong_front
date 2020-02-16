@@ -99,9 +99,9 @@
           height:500px;
         }
       </style>
+          <h3 class="display-5" id="reset-label">Selectionner un ip source</h3>
+          <button class="btn btn-primary btn-md mb-3" id="reset">Reset</button>
       <div id="map" class="map"></div>
-    <h3 class="display-5" id="reset-label">Windows</h3>
-    <button class="btn btn-primary btn-md mb-3" id="reset">Reset</button>
     <script>
       // Initialize and add the map
       function initMap() {
@@ -116,7 +116,7 @@
 
           var resetButton = jQuery('#reset');
           var resetLabel = jQuery("#reset-label");
-          resetButton.addListener('click', function() {
+          resetButton.bind('click', function() {
                Object.values(markersSrc).map((mk) => {
                     mk.setMap(map);
                });
