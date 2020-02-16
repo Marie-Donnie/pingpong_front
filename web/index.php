@@ -100,7 +100,7 @@
         }
       </style>
       <div class="jumbotron" id="map-jumbo">
-          <h3 class="display-5" id="reset-label">Selectionner un ip source</h3>
+          <h4 class="display-5" id="reset-label">Sélectionnez un ip source</h3>
           <button class="btn btn-primary btn-md mb-3" id="reset">Reset</button>
       <div id="map" class="map"></div>
       </div>
@@ -130,7 +130,7 @@
                     pl.setMap(null);
                });
                polylines = [];
-               resetLabel.text('Selectionner un ip source');
+               resetLabel.text('Sélectionnez un ip source');
           });
 
           $.get('https://aqueous-dusk-24314.herokuapp.com/sources/', function(data, status){
@@ -139,7 +139,7 @@
                   let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "S"})
                   markersSrc[dataPoint.address] = marker;
                   marker.addListener('click', function() {
-                      resetLabel.text('Selectionner un ip destination');
+                      resetLabel.text('Sélectionnez un ip destination');
 
                       //get destinations for sources
                       $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/destinations`, function(dataDst, status){
@@ -151,7 +151,7 @@
 
                               markerDest.addListener('click', function () {
 
-                                  resetLabel.text('Clicker reset por effacer le traceroute');
+                                  resetLabel.text('Clickez reset por effacer le traceroute');
 
                                   //get traceroute
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
