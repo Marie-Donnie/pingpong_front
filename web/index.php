@@ -130,7 +130,7 @@
                               markerDest.addListener('click', function () {
 
                                   //get traceroute
-                                  $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}`, function(dataTr, status){
+                                  $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
 
                                       dataTr.map((hop) => {
                                           let ping = [{lat: parseFloat(hop.src.latitude),
