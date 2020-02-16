@@ -154,6 +154,7 @@
                                           });
                                           polylines.push(pingPath);
                                           pingPath.setMap(map);
+                                          setTimeout(() => {  console.log("meow"); }, 2000);
                                       });
                                   });
 
