@@ -147,7 +147,7 @@
                                           let pingPath = new google.maps.Polyline({
                                               path: ping,
                                               geodesic: true,
-                                              strokeColor: rainbow[i],
+                                              strokeColor: rainbow[4],
                                               strokeOpacity: 1.0,
                                               strokeWeight: 3,
                                               icons: [{
