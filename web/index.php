@@ -100,6 +100,8 @@
         }
       </style>
       <div id="map" class="map"></div>
+    <h3 class="display-5" id="reset-label">Windows</h3>
+    <button class="btn btn-primary btn-md mb-3" id="reset">Reset</button>
     <script>
       // Initialize and add the map
       function initMap() {
@@ -112,23 +114,42 @@
           var map = new google.maps.Map(
               document.getElementById('map'), {zoom: 6, center: france});
 
+          var resetButton = jQuery('#reset');
+          var resetLabel = jQuery("#reset-label");
+          resetButton.addListener('click', function() {
+               Object.values(markersSrc).map((mk) => {
+                    mk.setMap(map);
+               });
+               Object.values(destMarkers).map((mk) => {
+                    mk.setMap(null);
+               });
+               destMarkers = {};
+               polylines.map((pl) => {
+                    pl.setMap(null);
+               });
+               polylines = [];
+               resetLabel.text('Selectionner un ip source');
+          });
 
           $.get('https://aqueous-dusk-24314.herokuapp.com/sources/', function(data, status){
               data.map((dataPoint) => {
                   let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
-                  let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "U"})
+                  let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "S"})
                   markersSrc[dataPoint.address] = marker;
                   marker.addListener('click', function() {
+                      resetLabel.text('Selectionner un ip destination');
 
                       //get destinations for sources
                       $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/destinations`, function(dataDst, status){
                           dataDst.map((dstDataPoint) => {
                               let pingDest = {lat: parseFloat(dstDataPoint.latitude), lng: parseFloat(dstDataPoint.longitude)};
-                              let markerDest = new google.maps.Marker({position: pingDest, map: map,title: "ISP: " + dstDataPoint.isp, label: "U"})
+                              let markerDest = new google.maps.Marker({position: pingDest, map: map,title: "ISP: " + dstDataPoint.isp, label: "D",
+                              icon: {url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}})
                               destMarkers[dstDataPoint.address] = markerDest;
 
                               markerDest.addListener('click', function () {
 
+                                  resetLabel.text('Clicker reset por effacer le traceroute');
 
                                   //get traceroute
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
@@ -147,7 +168,7 @@
                                           let pingPath = new google.maps.Polyline({
                                               path: ping,
                                               geodesic: true,
-                                              strokeColor: rainbow[i],
+                                              strokeColor: rainbow[0],
                                               strokeOpacity: 1.0,
                                               strokeWeight: 3,
                                               icons: [{
