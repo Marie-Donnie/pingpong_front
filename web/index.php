@@ -128,12 +128,14 @@
                               destMarkers[dstDataPoint.address] = markerDest;
 
                               markerDest.addListener('click', function () {
-
+                                   let rainbow = ["#FF0000", "#FF7F00",
+                                   "#FFFF00", "#00FF00", "#0000FF", "#4B0082",
+                                   "#9400D3"]
+                                   let i = 0;
                                   //get traceroute
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
 
                                       dataTr.map((hop) => {
-                                          setTimeout(() => {  console.log("meow"); }, 2000);
                                           let ping = [{lat: parseFloat(hop.src.latitude),
                                               lng: parseFloat(hop.src.longitude)},
                                               {lat: parseFloat(hop.target.latitude), lng: parseFloat(hop.target.longitude)}];
@@ -143,7 +145,7 @@
                                           let pingPath = new google.maps.Polyline({
                                               path: ping,
                                               geodesic: true,
-                                              strokeColor: '#FF0000',
+                                              strokeColor: rainbow[i],
                                               strokeOpacity: 1.0,
                                               strokeWeight: 3,
                                               icons: [{
@@ -153,6 +155,7 @@
                                                   strokeWeight: 3
                                               }],
                                           });
+                                          i = i % 7;
                                           polylines.push(pingPath);
                                           pingPath.setMap(map);
                                       });
