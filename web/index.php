@@ -99,9 +99,11 @@
           height:500px;
         }
       </style>
+      <div class="jumbotron" id="map-jumbo">
           <h3 class="display-5" id="reset-label">Selectionner un ip source</h3>
           <button class="btn btn-primary btn-md mb-3" id="reset">Reset</button>
       <div id="map" class="map"></div>
+      </div>
     <script>
       // Initialize and add the map
       function initMap() {
