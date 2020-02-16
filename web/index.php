@@ -133,6 +133,7 @@
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
 
                                       dataTr.map((hop) => {
+                                          setTimeout(() => {  console.log("meow"); }, 2000);
                                           let ping = [{lat: parseFloat(hop.src.latitude),
                                               lng: parseFloat(hop.src.longitude)},
                                               {lat: parseFloat(hop.target.latitude), lng: parseFloat(hop.target.longitude)}];
@@ -154,7 +155,6 @@
                                           });
                                           polylines.push(pingPath);
                                           pingPath.setMap(map);
-                                          setTimeout(() => {  console.log("meow"); }, 2000);
                                       });
                                   });
 
