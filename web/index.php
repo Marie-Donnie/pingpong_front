@@ -108,10 +108,17 @@
       // Initialize and add the map
       function initMap() {
 
+
+          //stores the markers for source nodes
           let markersSrc = {};
+
+          //stores the markers for the destination nodes
           let destMarkers = {};
-          let tracerouteData;
+
+          //stores the tr lines on the map
           let polylines = [];
+
+
           var france = {lat: 48.8556, lng: 2.3522};
           var map = new google.maps.Map(
               document.getElementById('map'), {zoom: 6, center: france});
@@ -141,6 +148,8 @@
                   let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
                   let marker = new google.maps.Marker({position: ping, map: map,title: "ISP: " + dataPoint.isp, label: "S"})
                   markersSrc[dataPoint.address] = marker;
+
+                  //when you click a source, get destinations
                   marker.addListener('click', function() {
                       resetLabel.text('Sélectionnez un ip destination');
 
@@ -152,6 +161,7 @@
                               icon: {url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}})
                               destMarkers[dstDataPoint.address] = markerDest;
 
+                              //when you click a destination, find traceroute for this src -> destination
                               markerDest.addListener('click', function () {
 
                                   resetLabel.text('Clickez reset por effacer le traceroute');
@@ -180,7 +190,7 @@
                                                   strokeWeight: 3
                                               }],
                                           });
-                    
+
                                           polylines.push(pingPath);
                                           pingPath.setMap(map);
                                       });
@@ -196,6 +206,7 @@
 
                       });
 
+                      //clear other sources
                      Object.values(markersSrc).map((mk) => {
                          if (mk !== marker) mk.setMap(null);
                      });
