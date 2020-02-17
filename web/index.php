@@ -118,6 +118,8 @@
 
           var resetButton = jQuery('#reset');
           var resetLabel = jQuery("#reset-label");
+
+          //When reset button is clicked, clear all destinations and traceroutes, and redisplay all possible source nodes.
           resetButton.bind('click', function() {
                Object.values(markersSrc).map((mk) => {
                     mk.setMap(map);
@@ -133,6 +135,7 @@
                resetLabel.text('Sélectionnez un ip source');
           });
 
+          //Get all source ips
           $.get('https://aqueous-dusk-24314.herokuapp.com/sources/', function(data, status){
               data.map((dataPoint) => {
                   let ping = {lat: parseFloat(dataPoint.latitude), lng: parseFloat(dataPoint.longitude)};
@@ -141,7 +144,7 @@
                   marker.addListener('click', function() {
                       resetLabel.text('Sélectionnez un ip destination');
 
-                      //get destinations for sources
+                      //get destinations for source selected
                       $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/destinations`, function(dataDst, status){
                           dataDst.map((dstDataPoint) => {
                               let pingDest = {lat: parseFloat(dstDataPoint.latitude), lng: parseFloat(dstDataPoint.longitude)};
@@ -153,13 +156,10 @@
 
                                   resetLabel.text('Clickez reset por effacer le traceroute');
 
-                                  //get traceroute
+                                  //get traceroute for source and destination
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
 
-                                     let rainbow = ["#FF0000", "#FF7F00",
-                                                                        "#FFFF00", "#00FF00", "#0000FF", "#4B0082",
-                                                                        "#9400D3"];
-                                      let i = 0;
+
                                       dataTr.map((hop) => {
                                           let ping = [{lat: parseFloat(hop.src.latitude),
                                               lng: parseFloat(hop.src.longitude)},
@@ -170,7 +170,7 @@
                                           let pingPath = new google.maps.Polyline({
                                               path: ping,
                                               geodesic: true,
-                                              strokeColor: rainbow[0],
+                                              strokeColor: "#FF0000",
                                               strokeOpacity: 1.0,
                                               strokeWeight: 3,
                                               icons: [{
@@ -180,8 +180,7 @@
                                                   strokeWeight: 3
                                               }],
                                           });
-                                          i = i + 1;
-                                          i = i % 7;
+                    
                                           polylines.push(pingPath);
                                           pingPath.setMap(map);
                                       });
