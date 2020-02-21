@@ -89,7 +89,7 @@
       </div>
       <div class="download-div">
           <h3 class="display-5">Windows</h3>
-          <p class="lead">Double-clickez le fichier téléchargé, et confirmez si demandé de l'éxecuter en tant qu'administrateur. Laissez le processus terminer. Ça peut prendre quelques minutes.</p>
+          <p class="lead">Double-cliquez le fichier téléchargé, et confirmez si demandé de l'éxecuter en tant qu'administrateur. Laissez le processus terminer. Ça peut prendre quelques minutes.</p>
           <a href="pingpong.bat" id="bat_button" download class="btn btn-dark btn-lg disabled">Télécharger fichier batch</a>
       </div>
     </div>
@@ -164,7 +164,7 @@
                               //when you click a destination, find traceroute for this src -> destination
                               markerDest.addListener('click', function () {
 
-                                  resetLabel.text('Clickez reset por effacer le traceroute');
+                                  resetLabel.text('Cliquez reset por effacer le traceroute');
 
                                   //get traceroute for source and destination
                                   $.get(`https://aqueous-dusk-24314.herokuapp.com/${dataPoint.address}/${dstDataPoint.address}/traceroute`, function(dataTr, status){
